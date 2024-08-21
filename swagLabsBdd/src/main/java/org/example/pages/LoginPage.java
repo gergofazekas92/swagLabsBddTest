@@ -1,13 +1,12 @@
 package org.example.pages;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage{
-    private final Dotenv dotenv = Dotenv.load();
     @FindBy(id = "user-name")
     private WebElement usernameField;
     @FindBy(id = "password")
@@ -16,29 +15,18 @@ public class LoginPage extends BasePage{
     private WebElement loginButton;
     @FindBy(id = "react-burger-menu-btn")
     private WebElement menuButton;
-    @FindBy(xpath = "//div[@class = 'error-message-container error']")
+    @FindBy(xpath = "//div[@class = 'error-message-container error']//h3")
     private WebElement loginErrorMessage;
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
-
     public void login(String username, String password) {
-        driver.get(dotenv.get("BASE_URL"));
-        System.out.println("Navigated to login page");
+        wait.until(ExpectedConditions.visibilityOf(usernameField));
         fillUsername(username);
         fillPassword(password);
         submitCredentials();
-    }
-
-    public boolean checkIfLoginIsSuccessful() {
-        wait.until(ExpectedConditions.visibilityOf(menuButton));
-        return menuButton.isDisplayed();
-    }
-
-    public boolean checkIfLoginIsUnsuccessful() {
-        wait.until(ExpectedConditions.visibilityOf(loginErrorMessage));
-        return checkIfErrorMessageIsShown();
     }
 
     public boolean checkIfLogoutIsSuccessful() {
@@ -70,4 +58,8 @@ public class LoginPage extends BasePage{
         loginButton.click();
     }
 
+    public String getErrorMessage() {
+        wait.until(ExpectedConditions.visibilityOf(loginErrorMessage));
+        return loginErrorMessage.getText();
+    }
 }
