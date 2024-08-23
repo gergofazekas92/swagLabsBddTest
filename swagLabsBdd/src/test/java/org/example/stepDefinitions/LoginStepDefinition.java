@@ -13,16 +13,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LoginStepDefinition {
     private final Dotenv dotenv = Dotenv.load();
     private final String validUsername = dotenv.get("STANDARD_USER");
-    private final String password = dotenv.get("PASSWORD");
+    private final String validPassword = dotenv.get("PASSWORD");
+    private final String loginUrl = dotenv.get("LOGIN_URL");
     private final LoginPage loginPage = Hook.getLoginPage();
     private final WebDriver driver = Hook.getDriver();
 
     @Given("I am on the login page")
-    public void IAmOnTheLoginPage(){loginPage.navigateToUrl(dotenv.get("LOGIN_URL"));}
+    public void IAmOnTheLoginPage(){loginPage.navigateToUrl(loginUrl);}
 
     @When("I log in with valid username and password")
     public void ILogInWithValidUsernameAndPassword(){
-        loginPage.login(validUsername, password);
+        loginPage.login(validUsername, validPassword);
     }
 
     @When("I log in with {string} as invalid username and {string} as password")
@@ -35,6 +36,7 @@ public class LoginStepDefinition {
         String actualUrl = driver.getCurrentUrl();
         String homeUrl = dotenv.get("HOME_URL");
 
+        System.out.println("Logged in to:" + actualUrl);
         assertEquals(homeUrl, actualUrl);
     }
 
@@ -42,6 +44,7 @@ public class LoginStepDefinition {
     public void iShouldSeeAnErrorMessage(String errorMessage) {
         String actualErrorMessage = loginPage.getErrorMessage();
 
+        System.out.println(actualErrorMessage);
         assertEquals(errorMessage, actualErrorMessage);
     }
 }

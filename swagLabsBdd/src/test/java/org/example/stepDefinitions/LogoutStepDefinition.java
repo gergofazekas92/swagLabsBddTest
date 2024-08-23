@@ -23,6 +23,7 @@ public class LogoutStepDefinition {
         String actualUrl = driver.getCurrentUrl();
         String expectedUrl = dotenv.get("LOGIN_URL");
 
+        System.out.println("logout done Im on the" + actualUrl + "page");
         assertEquals(expectedUrl, actualUrl);
     }
 }
