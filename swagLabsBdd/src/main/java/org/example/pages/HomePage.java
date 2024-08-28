@@ -108,4 +108,8 @@ public class HomePage extends BasePage{
             }
         }
     }
+
+    public List<WebElement> getProducts(){
+        return driver.findElements(By.className("inventory_item_name"));
+    }
 }

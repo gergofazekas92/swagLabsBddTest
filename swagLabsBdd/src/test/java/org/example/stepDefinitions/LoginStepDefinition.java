@@ -24,6 +24,7 @@ public class LoginStepDefinition {
     @When("I log in with valid username and password")
     public void ILogInWithValidUsernameAndPassword(){
         loginPage.login(validUsername, validPassword);
+        System.out.println("logged in");
     }
 
     @When("I log in with {string} as invalid username and {string} as password")
@@ -36,7 +37,7 @@ public class LoginStepDefinition {
         String actualUrl = driver.getCurrentUrl();
         String homeUrl = dotenv.get("HOME_URL");
 
-        System.out.println("Logged in to:" + actualUrl);
+        System.out.println("Im on:" + actualUrl);
         assertEquals(homeUrl, actualUrl);
     }
 
