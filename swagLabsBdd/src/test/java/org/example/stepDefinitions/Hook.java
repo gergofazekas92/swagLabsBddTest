@@ -2,6 +2,7 @@ package org.example.stepDefinitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import org.example.pages.CartPage;
 import org.example.pages.DetailsPage;
 import org.example.pages.HomePage;
 import org.example.pages.LoginPage;
@@ -17,6 +18,7 @@ public class Hook {
     private static LoginPage loginPage;
     private static HomePage homePage;
     private static DetailsPage detailsPage;
+    private static CartPage cartPage;
 
     @Before
     public void setUp(){
@@ -25,6 +27,7 @@ public class Hook {
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
         detailsPage = new DetailsPage(driver);
+        cartPage = new CartPage(driver);
     }
 
     @After
@@ -43,4 +46,5 @@ public class Hook {
     public static HomePage getHomePage() { return homePage; }
 
     public static DetailsPage getDetailsPage(){ return detailsPage; }
+    public static CartPage getCartPage() { return cartPage; }
 }

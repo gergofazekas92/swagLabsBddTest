@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,12 @@ public class HomePage extends BasePage{
     private WebElement backpackAddCartButton;
     @FindBy(id = "add-to-cart-sauce-labs-bike-light")
     private WebElement bikeLightAddCartButton;
+    @FindBy(className = "shopping_cart_link")
+    private  WebElement cartButton;
+    @FindBy(id = "remove-sauce-labs-backpack")
+    private WebElement backpackRemoveButton;
+    @FindBy(id = "remove-sauce-labs-bike-light")
+    private WebElement bikeLightRemoveButton;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -126,5 +133,23 @@ public class HomePage extends BasePage{
         backpackAddCartButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(bikeLightAddCartButton));
         bikeLightAddCartButton.click();
+    }
+
+    public void openCartPage(){
+        cartButton.click();
+    }
+
+    public String getProductNameFromButton(WebElement button) {
+        WebElement productNameElement = button.findElement(By.xpath("./ancestor::div[3]//div[2]//div[1]//div[1]"));
+        return productNameElement.getText();
+    }
+
+    public String getBackpackText(){
+       return getProductNameFromButton(backpackRemoveButton);
+    }
+
+    public List<String> getBackpackAndBikeLightText(){
+        System.out.println(List.of(getProductNameFromButton(backpackRemoveButton), getProductNameFromButton(bikeLightRemoveButton)));
+        return List.of(getProductNameFromButton(backpackRemoveButton), getProductNameFromButton(bikeLightRemoveButton));
     }
 }

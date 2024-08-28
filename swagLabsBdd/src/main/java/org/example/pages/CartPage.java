@@ -23,6 +23,7 @@ public class CartPage extends BasePage{
         for (WebElement product : cartProducts){
             names.add(product.getText());
         }
+        System.out.println(names.getFirst());
         return names;
     }
 }
