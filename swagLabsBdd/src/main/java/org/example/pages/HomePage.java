@@ -21,6 +21,10 @@ public class HomePage extends BasePage{
     private WebElement logoutButton;
     @FindBy(className = "product_sort_container")
     private WebElement sortDropDown;
+    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    private WebElement backpackAddCartButton;
+    @FindBy(id = "add-to-cart-sauce-labs-bike-light")
+    private WebElement bikeLightAddCartButton;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -111,5 +115,16 @@ public class HomePage extends BasePage{
 
     public List<WebElement> getProducts(){
         return driver.findElements(By.className("inventory_item_name"));
+    }
+    public void addBackpackToCart(){
+        wait.until(ExpectedConditions.elementToBeClickable(backpackAddCartButton));
+        backpackAddCartButton.click();
+    }
+
+    public void addBackpackAndBikeLightToCart(){
+        wait.until(ExpectedConditions.elementToBeClickable(backpackAddCartButton));
+        backpackAddCartButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(bikeLightAddCartButton));
+        bikeLightAddCartButton.click();
     }
 }
