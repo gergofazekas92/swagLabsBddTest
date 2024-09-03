@@ -12,6 +12,8 @@ public class CartPage extends BasePage{
 
     @FindBy(className = "inventory_item_name")
     private List<WebElement> cartProducts;
+    @FindBy(id = "checkout")
+    private WebElement checkoutButton;
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -25,5 +27,10 @@ public class CartPage extends BasePage{
         }
         System.out.println(names.getFirst());
         return names;
+    }
+
+    public void clickCheckoutButton(){
+        System.out.println("checkoutfirstclick");
+        checkoutButton.click();
     }
 }

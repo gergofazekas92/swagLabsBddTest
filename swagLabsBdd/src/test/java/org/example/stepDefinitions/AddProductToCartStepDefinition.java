@@ -25,11 +25,11 @@ public class AddProductToCartStepDefinition {
     public void iAddOneProductToTheCart() {
         homePage.addBackpackToCart();
         productName.add(homePage.getBackpackText());
+        homePage.openCartPage();
     }
 
     @Then("The product show in the cart")
     public void theProductShowInTheCart() {
-        homePage.openCartPage();
         wait.until(ExpectedConditions.urlToBe(dotenv.get("CART_PAGE")));
 
         List <String> productNameInCart = cartPage.getCartProductNames();
@@ -43,6 +43,6 @@ public class AddProductToCartStepDefinition {
     public void iAddTwoProductToTheCart() {
         homePage.addBackpackAndBikeLightToCart();
         productName = homePage.getBackpackAndBikeLightText();
-
+        homePage.openCartPage();
     }
 }

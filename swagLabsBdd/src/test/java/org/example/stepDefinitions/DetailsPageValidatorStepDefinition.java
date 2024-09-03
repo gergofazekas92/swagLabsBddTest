@@ -20,7 +20,6 @@ public class DetailsPageValidatorStepDefinition {
     private final WebDriver driver = Hook.getDriver();
     private final DetailsPage detailsPage = Hook.getDetailsPage();
     private final HomePage homePage = Hook.getHomePage();
-
     private final String homeUrl = dotenv.get("HOME_URL");
 
 

@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.example.pages.HomePage;
 import org.example.pages.LoginPage;
-import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
