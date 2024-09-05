@@ -1,6 +1,5 @@
 package org.example.pages;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public abstract class BasePage {
-    protected Dotenv dotenv = Dotenv.load();
+
     protected WebDriver driver;
     protected WebDriverWait wait;
     private static final int WAIT_DURATION = 5;

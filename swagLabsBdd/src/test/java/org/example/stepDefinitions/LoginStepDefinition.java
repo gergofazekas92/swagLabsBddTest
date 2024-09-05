@@ -1,25 +1,24 @@
 package org.example.stepDefinitions;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.example.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginStepDefinition {
-    private final Dotenv dotenv = Dotenv.load();
-    private final String validUsername = dotenv.get("STANDARD_USER");
-    private final String validPassword = dotenv.get("PASSWORD");
-    private final String loginUrl = dotenv.get("LOGIN_URL");
+
+    private final String validUsername = System.getenv("STANDARD_USER");
+    private final String validPassword = System.getenv("PASSWORD");
+    private static final String LOGIN_URL = "https://www.saucedemo.com/";
+    private static final String HOME_URL = "https://www.saucedemo.com/inventory.html";
     private final LoginPage loginPage = Hook.getLoginPage();
     private final WebDriver driver = Hook.getDriver();
 
     @Given("I am on the login page")
-    public void IAmOnTheLoginPage(){loginPage.navigateToUrl(loginUrl);}
+    public void IAmOnTheLoginPage(){loginPage.navigateToUrl(LOGIN_URL);}
 
     @When("I log in with valid username and password")
     public void ILogInWithValidUsernameAndPassword(){
@@ -35,10 +34,9 @@ public class LoginStepDefinition {
     @Then("I should be redirected to the home page")
     public void iShouldBeRedirectedToTheHomePage(){
         String actualUrl = driver.getCurrentUrl();
-        String homeUrl = dotenv.get("HOME_URL");
 
         System.out.println("Im on:" + actualUrl);
-        assertEquals(homeUrl, actualUrl);
+        assertEquals(HOME_URL, actualUrl);
     }
 
     @Then("I should see an error message {string}")
