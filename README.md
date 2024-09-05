@@ -24,20 +24,21 @@ Follow these steps to install and run the project:
 
    ```bash
    git clone https://github.com/username/swaglabs-bdd-automated-test.git
-   cd swaglabs-bdd-automated-test
+   cd swagLabsBdd
    
 3. **Install Maven (optional):** If you don't have Maven installed, download and install it from the official website. Maven is used for managing dependencies and running tests.
 
     [Maven Installation Guide](https://maven.apache.org/install.html)
 
-4. **Install dependencies:** If you are using Maven, run the following command in the project root directory to install the dependencies.
-   ```bash
-   mvn clean install
-   
-5. **Add environment variables:** The project requires certain environment variables to run.
+4. **Add environment variables:** The project requires certain environment variables to run.
     ```bash
    set PASSWORD=secret_sauce
    set STANDARD_USER=standard_user
+
+5. **Install dependencies:** If you are using Maven, run the following command in the project root directory to install the dependencies.
+   ```bash
+   mvn clean install
+
 
 ## Usage
 You can run the tests as follows:
