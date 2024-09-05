@@ -1,6 +1,5 @@
 package org.example.pages;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage{
 
-    private final Dotenv dotenv = Dotenv.load();
     @FindBy(id = "user-name")
     private WebElement usernameField;
     @FindBy(id = "password")

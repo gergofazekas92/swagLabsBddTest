@@ -1,8 +1,12 @@
 package org.example.stepDefinitions;
 
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import org.example.pages.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,6 +35,12 @@ public class Hook {
         checkoutStepOnePage = new CheckoutStepOnePage(driver);
         checkoutStepTwoPage = new CheckoutStepTwoPage(driver);
         checkoutCompletePage = new CheckoutCompletePage(driver);
+    }
+
+    @AfterStep
+    public static void takeScreenShot(Scenario scenario){
+        final byte [] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(screenshot, "image/png", "image");
     }
 
     @After

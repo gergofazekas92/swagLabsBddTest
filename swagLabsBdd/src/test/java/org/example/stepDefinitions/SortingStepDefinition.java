@@ -3,7 +3,6 @@ package org.example.stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.example.pages.HomePage;
 import org.example.pages.LoginPage;
 
@@ -13,16 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortingStepDefinition {
 
-    private final Dotenv dotenv = Dotenv.load();
     private final HomePage homePage = Hook.getHomePage();
     private final LoginPage loginPage = Hook.getLoginPage();
-    private final String validUsername = dotenv.get("STANDARD_USER");
-    private final String validPassword = dotenv.get("PASSWORD");
-    private final String loginUrl = dotenv.get("LOGIN_URL");
+    private final String validUsername = System.getenv("STANDARD_USER");
+    private final String validPassword = System.getenv("PASSWORD");
+    private static final String LOGIN_URL = "https://www.saucedemo.com/";
 
     @Given("I am on the home page")
     public void iAmOnTheHomePage() {
-        loginPage.navigateToUrl(loginUrl);
+        loginPage.navigateToUrl(LOGIN_URL);
         loginPage.login(validUsername, validPassword);
     }
 
