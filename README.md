@@ -61,4 +61,7 @@ You can run the tests as follows:
 
 ## Contact
 
-Feel free to reach out if you have any questions or suggestions! You can contact me at [Gergo Fazekas](gefazekas92@gmail.com).
+
+Feel free to reach out if you have any questions or suggestions! You can contact me at [gefazekas92@gmail.com].
+
+
